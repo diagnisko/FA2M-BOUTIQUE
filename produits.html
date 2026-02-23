@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FA2M — Produits</title>
+  <meta name="description" content="Catalogue produits FA2M — commande via WhatsApp" />
+  <link rel="canonical" href="https://example.com/produits.html" />
+  <meta property="og:title" content="FA2M — Catalogue produits">
+  <meta property="og:description" content="Sélection de produits populaires. Commande instantanée via WhatsApp.">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.png" />
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ItemList",
+    "name":"Catalogue FA2M",
+    "url":"https://example.com/produits.html",
+    "itemListElement": []
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="logo" href="index.html"><img src="/IMG/LOGO.png" alt="FA2M" width="160" height="44"></a>
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="produits.html" class="active">Produits</a>
+        <a href="apropos.html">À propos</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container section" aria-labelledby="catalogue-title">
+      <h1 id="catalogue-title">Notre collection</h1>
+      <p class="lead">Sélection de produits populaires. Clique sur "Commander via WhatsApp" pour envoyer ta demande instantanément.</p>
+
+      <div class="controls" aria-hidden="false">
+        <input id="search" placeholder="Rechercher un produit..." aria-label="Recherche produit" />
+        <select id="sort" aria-label="Trier les produits">
+          <option value="popular">Trier : Populaire</option>
+          <option value="price-asc">Prix croissant</option>
+          <option value="price-desc">Prix décroissant</option>
+        </select>
+      </div>
+
+      <div class="products-grid" id="products-list" aria-live="polite">
+        <!-- Exemple produit (dupliquer pour ajouter) -->
+        <article class="product-card" data-name="Produit 1" data-price="29">
+          <div class="badge">Populaire</div>
+          <div class="media"><img src="assets/products/prod-1.jpg" alt="Produit 1" width="600" height="400" loading="lazy"></div>
+          <div class="info">
+            <h3>Produit 1</h3>
+            <p class="price">29 €</p>
+            <p class="desc">Description courte, bénéfices clés et promesse produit.</p>
+            <div class="card-actions">
+              <button class="btn whatsapp" data-action="order" type="button">Commander via WhatsApp</button>
+              <a class="btn ghost" href="#" data-action="details" aria-label="Voir les détails de Produit 1">Voir</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- autres produits -->
+        <article class="product-card" data-name="Produit 2" data-price="49">
+          <div class="media"><img src="assets/products/prod-2.jpg" alt="Produit 2" width="600" height="400" loading="lazy"></div>
+          <div class="info">
+            <h3>Produit 2</h3>
+            <p class="price">49 €</p>
+            <p class="desc">Description courte, bénéfices clés et promesse produit.</p>
+            <div class="card-actions">
+              <button class="btn whatsapp" data-action="order" type="button">Commander via WhatsApp</button>
+              <a class="btn ghost" href="#" data-action="details">Voir</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Répéter produit 3..8 (conservés identiques) -->
+        <article class="product-card" data-name="Produit 3" data-price="39">
+          <div class="media"><img src="assets/products/prod-3.jpg" alt="Produit 3" width="600" height="400" loading="lazy"></div>
+          <div class="info">
+            <h3>Produit 3</h3>
+            <p class="price">39 €</p>
+            <p class="desc">Description courte, bénéfices clés et promesse produit.</p>
+            <div class="card-actions">
+              <button class="btn whatsapp" data-action="order" type="button">Commander via WhatsApp</button>
+              <a class="btn ghost" href="#" data-action="details">Voir</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="Produit 4" data-price="69">
+          <div class="media"><img src="assets/products/prod-4.jpg" alt="Produit 4" width="600" height="400" loading="lazy"></div>
+          <div class="info">
+            <h3>Produit 4</h3>
+            <p class="price">69 €</p>
+            <p class="desc">Description courte, bénéfices clés et promesse produit.</p>
+            <div class="card-actions">
+              <button class="btn whatsapp" data-action="order" type="button">Commander via WhatsApp</button>
+              <a class="btn ghost" href="#" data-action="details">Voir</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="Produit 5" data-price="24">
+          <div class="media"><img src="assets/products/prod-5.jpg" alt="Produit 5" width="600" height="400" loading="lazy"></div>
+          <div class="info">
+            <h3>Produit 5</h3>
+            <p class="price">24 €</p>
+            <p class="desc">Description courte, bénéfices clés et promesse produit.</p>
+            <div class="card-actions">
+              <button class="btn whatsapp" data-action="order" type="button">Commander via WhatsApp</button>
+              <a class="btn ghost" href="#" data-action="details">Voir</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="Produit 6" data-price="89">
+          <div class="media"><img src="assets/products/prod-6.jpg" alt="Produit 6" width="600" height="400" loading="lazy"></div>
+          <div class="info">
+            <h3>Produit 6</h3>
+            <p class="price">89 €</p>
+            <p class="desc">Description courte, bénéfices clés et promesse produit.</p>
+            <div class="card-actions">
+              <button class="btn whatsapp" data-action="order" type="button">Commander via WhatsApp</button>
+              <a class="btn ghost" href="#" data-action="details">Voir</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="Produit 7" data-price="19">
+          <div class="media"><img src="assets/products/prod-7.jpg" alt="Produit 7" width="600" height="400" loading="lazy"></div>
+          <div class="info">
+            <h3>Produit 7</h3>
+            <p class="price">19 €</p>
+            <p class="desc">Description courte, bénéfices clés et promesse produit.</p>
+            <div class="card-actions">
+              <button class="btn whatsapp" data-action="order" type="button">Commander via WhatsApp</button>
+              <a class="btn ghost" href="#" data-action="details">Voir</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="Produit 8" data-price="129">
+          <div class="media"><img src="assets/products/prod-8.jpg" alt="Produit 8" width="600" height="400" loading="lazy"></div>
+          <div class="info">
+            <h3>Produit 8</h3>
+            <p class="price">129 €</p>
+            <p class="desc">Description courte, bénéfices clés et promesse produit.</p>
+            <div class="card-actions">
+              <button class="btn whatsapp" data-action="order" type="button">Commander via WhatsApp</button>
+              <a class="btn ghost" href="#" data-action="details">Voir</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> FA2M — Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <a id="whatsapp-float" class="whatsapp-float" href="#" target="_blank" rel="noopener noreferrer" aria-label="Commander via WhatsApp">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 4.5c-.5-1.1-1.3-2.1-2.3-2.9-2.5-1.8-6.3-2.3-9.4-.9C4.5 3.8 2.9 6.1 2.2 9.1.9 14.1 4.8 17.9 7.6 19.4c1 .5 2 .7 3.1.7.4 0 .7 0 1.1-.1 1.6-.3 3.5-1.4 4.6-2.8 1.6-2 2.1-4.5 2.6-6.9.3-1.4.3-2.6-.1-3.6z" fill="#fff"/></svg>
+    <span>Commander</span>
+  </a>
+
+  <script defer src="script.js"></script>
+</body>
+</html>
