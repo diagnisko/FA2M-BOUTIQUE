@@ -1,0 +1,961 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FA2M — Contactez-nous</title>
+  <meta name="description" content="Contactez FA2M pour toute question sur nos produits, commandes ou livraisons. Disponible via WhatsApp, email ou formulaire de contact.">
+  <meta property="og:title"       content="FA2M — Contactez-nous">
+  <meta property="og:description" content="Notre équipe est disponible 7j/7 pour vous accompagner. Écrivez-nous ou appelez-nous via WhatsApp.">
+  <meta property="og:type"        content="website">
+  <meta name="theme-color"        content="#060d18">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/conversion.css">
+
+  <style>
+    /* ── Contact page extra styles ── */
+    .contact-section {
+      padding: 4rem 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+
+    /* ── Contact Form Card ── */
+    .contact-form-card {
+      background: var(--bg-card, rgba(13,24,41,.95));
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+
+    .contact-form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .5rem;
+    }
+
+    .contact-form-subtitle {
+      font-size: .9rem;
+      color: var(--text-2, #8aa0b0);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .cf-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .cf-group {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+
+    .cf-label {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--text-2, #8aa0b0);
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+    }
+
+    .cf-label .req {
+      color: #ff4d6a;
+      font-size: .8rem;
+    }
+
+    .cf-input,
+    .cf-textarea,
+    .cf-select {
+      padding: .7rem 1rem;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px;
+      color: var(--text, #e8f4f8);
+      font-size: .9rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      width: 100%;
+    }
+
+    .cf-input:focus,
+    .cf-textarea:focus,
+    .cf-select:focus {
+      border-color: var(--accent, #00e676);
+      box-shadow: 0 0 0 3px rgba(0,230,118,.12);
+    }
+
+    .cf-input::placeholder,
+    .cf-textarea::placeholder {
+      color: rgba(255,255,255,.25);
+    }
+
+    .cf-textarea {
+      resize: vertical;
+      min-height: 130px;
+      line-height: 1.6;
+    }
+
+    .cf-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%238aa0b0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      cursor: pointer;
+    }
+
+    .cf-select option {
+      background: #0b1220;
+      color: #e8f4f8;
+    }
+
+    .btn-contact-submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .625rem;
+      padding: .9rem 1.75rem;
+      background: #25d366;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all .2s ease;
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      margin-top: .25rem;
+    }
+
+    .btn-contact-submit:hover {
+      background: #20bc5a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37,211,102,.3);
+    }
+
+    .btn-contact-submit:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .contact-form-note {
+      font-size: .78rem;
+      color: var(--muted, #4a6070);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* ── Contact Info ── */
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-info-header {
+      margin-bottom: .5rem;
+    }
+
+    .contact-info-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .5rem;
+    }
+
+    .contact-info-header p {
+      font-size: .9rem;
+      color: var(--text-2, #8aa0b0);
+      line-height: 1.7;
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: all .2s ease;
+      text-decoration: none;
+    }
+
+    a.contact-card:hover {
+      background: rgba(0,230,118,.06);
+      border-color: rgba(0,230,118,.2);
+      transform: translateY(-2px);
+    }
+
+    .contact-card-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.3rem;
+    }
+
+    .contact-card-body { flex: 1; min-width: 0; }
+
+    .contact-card-label {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--text-2, #8aa0b0);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: .3rem;
+    }
+
+    .contact-card-value {
+      font-size: .95rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .contact-card-hint {
+      font-size: .8rem;
+      color: var(--text-2, #8aa0b0);
+      margin-top: .2rem;
+    }
+
+    /* ── Social List ── */
+    .contact-social-title {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--text-2, #8aa0b0);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: .875rem;
+    }
+
+    .contact-socials {
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link-btn {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .55rem 1.1rem;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 99px;
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--text-2, #8aa0b0);
+      text-decoration: none;
+      transition: all .2s ease;
+    }
+
+    .social-link-btn:hover {
+      background: rgba(0,230,118,.08);
+      border-color: rgba(0,230,118,.25);
+      color: var(--accent, #00e676);
+    }
+
+    /* ── Map placeholder ── */
+    .map-placeholder {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.07);
+      height: 180px;
+      background: rgba(255,255,255,.03);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+      color: var(--text-2);
+      font-size: .9rem;
+      text-decoration: none;
+      transition: all .2s ease;
+    }
+
+    .map-placeholder:hover {
+      background: rgba(0,230,118,.05);
+      border-color: rgba(0,230,118,.2);
+    }
+
+    .map-placeholder .map-icon {
+      font-size: 2.5rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .cf-row {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-form-card {
+        padding: 1.75rem 1.25rem;
+      }
+    }
+  </style>
+</head>
+
+<body data-page="contact">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════════════════════════ -->
+<header class="site-header" role="banner">
+  <div class="header-inner">
+
+    <a class="logo" href="index.html" aria-label="FA2M — Accueil">
+      FA<span>2</span>M
+      <div class="logo-dot" aria-hidden="true"></div>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Navigation principale">
+      <a href="index.html">Accueil</a>
+      <a href="produits.html">Produits</a>
+      <a href="apropos.html">À propos</a>
+      <a href="contact.html" class="active" aria-current="page">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="produits.html" class="btn btn-primary">Voir la boutique</a>
+
+      <button
+        id="cart-btn-header"
+        class="cart-btn-header"
+        onclick="cartOpen()"
+        aria-label="Ouvrir le panier"
+        title="Mon panier"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96C5 16.1 6.1 17 7 17h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63H19c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0023.5 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+        </svg>
+        <span class="cart-badge" aria-live="polite" style="display:none">0</span>
+      </button>
+
+      <button
+        class="hamburger"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+        aria-controls="nav-mobile"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<nav id="nav-mobile" class="nav-mobile" aria-label="Navigation mobile">
+  <a href="index.html">🏠 Accueil</a>
+  <a href="produits.html">🛍️ Produits</a>
+  <a href="apropos.html">ℹ️ À propos</a>
+  <a href="contact.html">📩 Contact</a>
+</nav>
+
+
+<main>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PAGE HERO
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="page-hero" aria-labelledby="page-title">
+    <div class="container">
+      <span class="section-label">📩 On vous répond vite</span>
+      <h1 id="page-title">Contactez-nous</h1>
+      <p>Notre équipe est disponible du lundi au samedi, de 8h à 20h, pour répondre à toutes vos questions.</p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CONTACT SECTION
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="contact-section" aria-labelledby="contact-heading">
+    <div class="container">
+      <h2 id="contact-heading" class="visually-hidden">Formulaire de contact et informations</h2>
+
+      <div class="contact-grid">
+
+        <!-- ── Left: Contact Form ── -->
+        <div class="contact-form-card reveal">
+
+          <h3 class="contact-form-title">Envoyez-nous un message</h3>
+          <p class="contact-form-subtitle">
+            Remplissez le formulaire ci-dessous. Votre message sera transmis via WhatsApp
+            pour une réponse garantie sous 1h en heures ouvrées.
+          </p>
+
+          <form
+            id="contact-form"
+            class="contact-form"
+            novalidate
+            autocomplete="on"
+            aria-label="Formulaire de contact"
+          >
+
+            <div class="cf-row">
+              <div class="cf-group">
+                <label for="cf-nom" class="cf-label">
+                  Nom complet <span class="req" aria-hidden="true">*</span>
+                </label>
+                <input
+                  id="cf-nom"
+                  name="nom"
+                  type="text"
+                  class="cf-input"
+                  placeholder="Votre nom"
+                  required
+                  aria-required="true"
+                  autocomplete="name"
+                >
+              </div>
+
+              <div class="cf-group">
+                <label for="cf-email" class="cf-label">
+                  Email <span class="req" aria-hidden="true">*</span>
+                </label>
+                <input
+                  id="cf-email"
+                  name="email"
+                  type="email"
+                  class="cf-input"
+                  placeholder="votre@email.com"
+                  required
+                  aria-required="true"
+                  autocomplete="email"
+                >
+              </div>
+            </div>
+
+            <div class="cf-group">
+              <label for="cf-telephone" class="cf-label">
+                Téléphone
+              </label>
+              <input
+                id="cf-telephone"
+                name="telephone"
+                type="tel"
+                class="cf-input"
+                placeholder="+221 7X XXX XX XX"
+                autocomplete="tel"
+              >
+            </div>
+
+            <div class="cf-group">
+              <label for="cf-sujet" class="cf-label">
+                Sujet <span class="req" aria-hidden="true">*</span>
+              </label>
+              <select
+                id="cf-sujet"
+                name="sujet"
+                class="cf-select"
+                required
+                aria-required="true"
+              >
+                <option value="">— Choisir un sujet —</option>
+                <option value="Renseignement produit">Renseignement sur un produit</option>
+                <option value="Commande en cours">Ma commande en cours</option>
+                <option value="Livraison">Question sur la livraison</option>
+                <option value="Retour / Échange">Retour ou échange</option>
+                <option value="Paiement">Problème de paiement</option>
+                <option value="Partenariat">Partenariat / Collaboration</option>
+                <option value="Autre">Autre</option>
+              </select>
+            </div>
+
+            <div class="cf-group">
+              <label for="cf-message" class="cf-label">
+                Message <span class="req" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="cf-message"
+                name="message"
+                class="cf-textarea"
+                placeholder="Décrivez votre demande en détail…"
+                required
+                aria-required="true"
+                rows="5"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn-contact-submit" id="contact-submit-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Envoyer via WhatsApp
+            </button>
+
+            <p class="contact-form-note">
+              🔒 Vos informations sont confidentielles et ne seront jamais partagées avec des tiers.
+            </p>
+
+          </form>
+        </div>
+
+        <!-- ── Right: Contact Info ── -->
+        <div class="contact-info reveal">
+
+          <div class="contact-info-header">
+            <span class="section-label">📞 Coordonnées</span>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff;margin-top:.5rem">
+              On est là pour vous
+            </h3>
+            <p style="margin-top:.625rem">
+              Plusieurs façons de nous joindre. Nous répondons toujours rapidement,
+              surtout via WhatsApp qui est notre canal principal.
+            </p>
+          </div>
+
+          <!-- WhatsApp -->
+          <a
+            href="https://wa.me/221781332323?text=Bonjour%20FA2M%2C%20j'ai%20une%20question."
+            class="contact-card"
+            target="_blank"
+            rel="noopener"
+            aria-label="Nous contacter sur WhatsApp"
+          >
+            <div class="contact-card-icon" style="background:rgba(37,211,102,.12);color:#25d366" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </div>
+            <div class="contact-card-body">
+              <div class="contact-card-label">WhatsApp — Canal principal</div>
+              <div class="contact-card-value">+221 78 133 23 23</div>
+              <div class="contact-card-hint">Réponse en moins d'1h en heures ouvrées</div>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:rgba(255,255,255,.2);flex-shrink:0;margin-top:.25rem" aria-hidden="true">
+              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+            </svg>
+          </a>
+
+          <!-- Email -->
+          <a
+            href="mailto:contact@fa2m.sn"
+            class="contact-card"
+            aria-label="Nous envoyer un email"
+          >
+            <div class="contact-card-icon" style="background:rgba(0,180,216,.1);color:#00b4d8" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+            </div>
+            <div class="contact-card-body">
+              <div class="contact-card-label">Email</div>
+              <div class="contact-card-value">contact@fa2m.sn</div>
+              <div class="contact-card-hint">Réponse sous 24h ouvrées</div>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color:rgba(255,255,255,.2);flex-shrink:0;margin-top:.25rem" aria-hidden="true">
+              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+            </svg>
+          </a>
+
+          <!-- Adresse -->
+          <div class="contact-card" style="cursor:default">
+            <div class="contact-card-icon" style="background:rgba(255,204,0,.08);color:#ffcc00" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+            </div>
+            <div class="contact-card-body">
+              <div class="contact-card-label">Adresse</div>
+              <div class="contact-card-value">Dakar, Sénégal</div>
+              <div class="contact-card-hint">Plateau &amp; Almadies — livraison dans toute la ville</div>
+            </div>
+          </div>
+
+          <!-- Horaires -->
+          <div class="contact-card" style="cursor:default">
+            <div class="contact-card-icon" style="background:rgba(0,230,118,.08);color:var(--accent)" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
+              </svg>
+            </div>
+            <div class="contact-card-body">
+              <div class="contact-card-label">Horaires d'ouverture</div>
+              <div class="contact-card-value">Lun – Sam : 8h00 – 20h00</div>
+              <div class="contact-card-hint">Dimanche sur WhatsApp uniquement</div>
+            </div>
+          </div>
+
+          <!-- Réseaux sociaux -->
+          <div>
+            <p class="contact-social-title">Suivez-nous</p>
+            <div class="contact-socials">
+              <a
+                href="#"
+                class="social-link-btn"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram FA2M"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                Instagram
+              </a>
+              <a
+                href="#"
+                class="social-link-btn"
+                target="_blank"
+                rel="noopener"
+                aria-label="Facebook FA2M"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                Facebook
+              </a>
+              <a
+                href="#"
+                class="social-link-btn"
+                target="_blank"
+                rel="noopener"
+                aria-label="TikTok FA2M"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                </svg>
+                TikTok
+              </a>
+            </div>
+          </div>
+
+          <!-- Map Placeholder -->
+          <a
+            href="https://maps.google.com/?q=Dakar,Senegal"
+            class="map-placeholder"
+            target="_blank"
+            rel="noopener"
+            aria-label="Voir Dakar sur Google Maps"
+          >
+            <span class="map-icon" aria-hidden="true">🗺️</span>
+            <span style="font-weight:600;color:var(--text-2)">Dakar, Sénégal</span>
+            <span style="font-size:.8rem;color:var(--muted)">Cliquer pour voir sur Google Maps →</span>
+          </a>
+
+        </div>
+        <!-- /contact-info -->
+
+      </div>
+      <!-- /contact-grid -->
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FAQ RAPIDE
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="section" style="background:var(--bg-1);padding:3.5rem 0" aria-labelledby="faq-title">
+    <div class="container">
+
+      <div class="section-header centered reveal">
+        <span class="section-label">❓ Questions fréquentes</span>
+        <h2 class="section-title" id="faq-title">
+          <span>FAQ Rapide</span>
+        </h2>
+        <p class="section-desc">
+          Les réponses aux questions les plus posées par nos clients.
+        </p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;margin-top:2.5rem">
+
+        <div class="feature-card reveal" style="padding:1.5rem">
+          <h4 style="font-size:.95rem;font-weight:700;margin-bottom:.625rem;display:flex;align-items:center;gap:.5rem">
+            <span aria-hidden="true">🚚</span> Quels sont les délais de livraison ?
+          </h4>
+          <p style="font-size:.875rem;color:var(--text-2);line-height:1.65">
+            À Dakar : 24 à 48 heures. Dans les autres villes du Sénégal : 3 à 5 jours ouvrés.
+            Vous serez contacté par WhatsApp pour confirmer l'heure de livraison.
+          </p>
+        </div>
+
+        <div class="feature-card reveal" style="padding:1.5rem">
+          <h4 style="font-size:.95rem;font-weight:700;margin-bottom:.625rem;display:flex;align-items:center;gap:.5rem">
+            <span aria-hidden="true">💳</span> Quels moyens de paiement acceptez-vous ?
+          </h4>
+          <p style="font-size:.875rem;color:var(--text-2);line-height:1.65">
+            Nous acceptons Wave, Orange Money et le paiement à la livraison (dans certaines zones).
+            Toutes les transactions sont sécurisées.
+          </p>
+        </div>
+
+        <div class="feature-card reveal" style="padding:1.5rem">
+          <h4 style="font-size:.95rem;font-weight:700;margin-bottom:.625rem;display:flex;align-items:center;gap:.5rem">
+            <span aria-hidden="true">↩️</span> Puis-je retourner un article ?
+          </h4>
+          <p style="font-size:.875rem;color:var(--text-2);line-height:1.65">
+            Oui ! Vous avez 7 jours après réception pour retourner un article non utilisé dans
+            son emballage d'origine. Contactez-nous via WhatsApp pour initier le retour.
+          </p>
+        </div>
+
+        <div class="feature-card reveal" style="padding:1.5rem">
+          <h4 style="font-size:.95rem;font-weight:700;margin-bottom:.625rem;display:flex;align-items:center;gap:.5rem">
+            <span aria-hidden="true">🛡️</span> Les produits sont-ils authentiques ?
+          </h4>
+          <p style="font-size:.875rem;color:var(--text-2);line-height:1.65">
+            Absolument. Chaque produit est rigoureusement sélectionné et vérifié avant d'être
+            mis en vente. Nous garantissons l'authenticité de tous nos articles.
+          </p>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;margin-top:2rem" class="reveal">
+        <p style="color:var(--text-2);margin-bottom:1rem;font-size:.9rem">
+          Vous n'avez pas trouvé votre réponse ?
+        </p>
+        <a
+          href="https://wa.me/221781332323?text=Bonjour%20FA2M%2C%20j'ai%20une%20question."
+          class="btn btn-primary"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Poser une question sur WhatsApp
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════════ -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div class="footer-col">
+        <div class="footer-logo">
+          FA<span>2</span>M
+          <div class="logo-dot" aria-hidden="true"></div>
+        </div>
+        <p class="footer-desc">
+          Votre boutique premium à Dakar. Mode, accessoires et beauté de qualité supérieure.
+          Livraison rapide partout au Sénégal.
+        </p>
+        <div class="footer-social" aria-label="Réseaux sociaux">
+          <a href="https://wa.me/221781332323" class="social-btn" aria-label="WhatsApp" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="produits.html">Tous les produits</a></li>
+          <li><a href="apropos.html">À propos de FA2M</a></li>
+          <li><a href="contact.html">Nous contacter</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Catégories</h4>
+        <ul>
+          <li><a href="produits.html">Accessoires</a></li>
+          <li><a href="produits.html">Sacs à Main</a></li>
+          <li><a href="produits.html">Beauté &amp; Parfums</a></li>
+          <li><a href="produits.html">Chaussures</a></li>
+          <li><a href="produits.html">Vêtements</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>
+            <a href="https://wa.me/221781332323" target="_blank" rel="noopener">
+              📱 +221 78 133 23 23
+            </a>
+          </li>
+          <li><a href="mailto:contact@fa2m.sn">📧 contact@fa2m.sn</a></li>
+          <li><a href="contact.html">Formulaire de contact</a></li>
+          <li><span>📍 Dakar, Sénégal</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>
+        &copy; <span id="footer-year">2025</span> FA2M — Tous droits réservés.
+        Fait avec ❤️ au Sénégal.
+      </span>
+      <div class="footer-links">
+        <a href="#">Confidentialité</a>
+        <a href="#">CGV</a>
+        <a href="#">Mentions légales</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- WhatsApp Float -->
+<a
+  href="https://wa.me/221781332323?text=Bonjour%20FA2M%2C%20j'ai%20une%20question."
+  class="whatsapp-float"
+  target="_blank"
+  rel="noopener"
+  aria-label="Contacter FA2M sur WhatsApp"
+  title="Discuter sur WhatsApp"
+>
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  <span>Discutons !</span>
+</a>
+
+<!-- Product Modal Overlay -->
+<div
+  id="product-modal-overlay"
+  class="modal-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Détails du produit"
+>
+  <div class="modal-panel"></div>
+</div>
+
+<!-- Current year -->
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  // Override the contact form submit to use the custom fields
+  document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('contact-form');
+    var btn  = document.getElementById('contact-submit-btn');
+    if (!form) return;
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      var nom      = (form.querySelector('#cf-nom')?.value || '').trim();
+      var email    = (form.querySelector('#cf-email')?.value || '').trim();
+      var tel      = (form.querySelector('#cf-telephone')?.value || '').trim();
+      var sujet    = (form.querySelector('#cf-sujet')?.value || '').trim();
+      var message  = (form.querySelector('#cf-message')?.value || '').trim();
+
+      if (!nom || !email || !sujet || !message) {
+        if (typeof showToast === 'function') {
+          showToast('Veuillez remplir tous les champs obligatoires (*).', 'error');
+        } else {
+          alert('Veuillez remplir tous les champs obligatoires.');
+        }
+        return;
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        if (typeof showToast === 'function') {
+          showToast('Veuillez entrer une adresse email valide.', 'error');
+        }
+        return;
+      }
+
+      btn.disabled    = true;
+      btn.textContent = 'Envoi en cours…';
+
+      await new Promise(r => setTimeout(r, 400));
+
+      var lines = [
+        '📩 *Message via FA2M*',
+        '━━━━━━━━━━━━━━━━━━━━━━',
+        '',
+        '👤 Nom     : ' + nom,
+        '📧 Email   : ' + email,
+        (tel ? '📱 Tél     : ' + tel : null),
+        '📌 Sujet   : ' + sujet,
+        '',
+        '💬 Message :',
+        message,
+        '',
+        '━━━━━━━━━━━━━━━━━━━━━━'
+      ].filter(Boolean).join('\n');
+
+      var waUrl = 'https://wa.me/221781332323?text=' + encodeURIComponent(lines);
+      window.open(waUrl, '_blank');
+
+      if (typeof showToast === 'function') {
+        showToast('✓ WhatsApp ouvert — votre message est prêt à être envoyé !', 'success');
+      }
+
+      form.reset();
+      btn.disabled    = false;
+      btn.innerHTML = [
+        '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">',
+        '<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>',
+        '</svg>',
+        'Envoyer via WhatsApp'
+      ].join('');
+    });
+  });
+</script>
+
+<!-- App Scripts -->
+<script src="assets/js/config.js"  defer></script>
+<script src="assets/js/api.js"     defer></script>
+<script src="assets/js/cart.js"    defer></script>
+<script src="assets/js/ui.js"      defer></script>
+<script src="assets/js/main.js"    defer></script>
+
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FA2M Admin — Commandes</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#060d18">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+
+<body data-page="orders">
+
+<div class="admin-layout">
+
+  <!-- ══════════════════════════════════════════════════════════
+       SIDEBAR
+  ═══════════════════════════════════════════════════════════ -->
+  <aside class="admin-sidebar" id="admin-sidebar" role="navigation" aria-label="Navigation admin">
+
+    <div class="sidebar-logo" aria-label="FA2M Administration">
+      <span class="sidebar-logo-text">FA<span>2</span>M</span>
+      <div class="sidebar-logo-dot" aria-hidden="true"></div>
+    </div>
+
+    <div class="sidebar-section">
+      <p class="sidebar-section-title">Menu principal</p>
+      <nav class="sidebar-nav" aria-label="Navigation principale">
+        <a href="index.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+          </svg>
+          Tableau de bord
+        </a>
+        <a href="commandes.html" class="active" aria-current="page">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/>
+          </svg>
+          Commandes
+        </a>
+        <a href="produits.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20 4H4v2l8 5 8-5V4zm0 4.5l-8 5-8-5V20h16V8.5z"/>
+          </svg>
+          Produits
+        </a>
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
+          </svg>
+        </div>
+        <span class="admin-username">admin</span>
+      </div>
+      <a
+        href="#"
+        class="sidebar-logout"
+        data-action="logout"
+        aria-label="Se déconnecter"
+        title="Se déconnecter"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+        </svg>
+        Déconnexion
+      </a>
+    </div>
+
+  </aside>
+
+  <!-- ══════════════════════════════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="admin-main">
+
+    <!-- Top Bar -->
+    <header class="admin-topbar" role="banner">
+      <div class="topbar-left">
+        <button
+          class="sidebar-toggle"
+          onclick="toggleSidebar()"
+          aria-label="Ouvrir/fermer le menu"
+          aria-expanded="false"
+          aria-controls="admin-sidebar"
+        >
+          <span></span><span></span><span></span>
+        </button>
+        <h1 class="topbar-title">Gestion des commandes</h1>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-user">
+          <span class="admin-username">admin</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="admin-content">
+
+      <!-- ── Toolbar ── -->
+      <div class="admin-toolbar">
+
+        <!-- Search -->
+        <div class="admin-search-wrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+          <input
+            id="orders-search"
+            type="search"
+            class="admin-search-input"
+            placeholder="Rechercher par nom, téléphone ou référence…"
+            autocomplete="off"
+            aria-label="Rechercher une commande"
+          >
+        </div>
+
+        <!-- Export hint -->
+        <span class="orders-total-badge" id="orders-total-badge" aria-live="polite"></span>
+
+      </div>
+
+      <!-- ── Status Filters ── -->
+      <div class="status-tabs" role="tablist" aria-label="Filtrer par statut">
+        <button
+          class="status-tab active"
+          data-status-filter="all"
+          role="tab"
+          aria-selected="true"
+        >
+          Toutes
+        </button>
+        <button
+          class="status-tab"
+          data-status-filter="nouvelle"
+          role="tab"
+          aria-selected="false"
+        >
+          🆕 Nouvelles
+        </button>
+        <button
+          class="status-tab"
+          data-status-filter="confirmee"
+          role="tab"
+          aria-selected="false"
+        >
+          ✅ Confirmées
+        </button>
+        <button
+          class="status-tab"
+          data-status-filter="en_livraison"
+          role="tab"
+          aria-selected="false"
+        >
+          🚚 En livraison
+        </button>
+        <button
+          class="status-tab"
+          data-status-filter="livree"
+          role="tab"
+          aria-selected="false"
+        >
+          📦 Livrées
+        </button>
+        <button
+          class="status-tab"
+          data-status-filter="annulee"
+          role="tab"
+          aria-selected="false"
+        >
+          ❌ Annulées
+        </button>
+      </div>
+
+      <!-- ── Orders Table ── -->
+      <div class="admin-card" style="padding:0">
+        <div class="table-wrap">
+          <table class="admin-table" aria-label="Liste des commandes">
+            <thead>
+              <tr>
+                <th scope="col">Référence</th>
+                <th scope="col">Client</th>
+                <th scope="col">Adresse</th>
+                <th scope="col">Total</th>
+                <th scope="col">Paiement</th>
+                <th scope="col">Statut</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody id="orders-tbody">
+              <tr>
+                <td colspan="7" style="text-align:center;padding:3rem;color:var(--text-2)">
+                  Chargement des commandes…
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── Pagination ── -->
+      <div id="orders-pagination" aria-label="Pagination" role="navigation"></div>
+
+    </div>
+    <!-- /admin-content -->
+
+  </div>
+  <!-- /admin-main -->
+
+</div>
+<!-- /admin-layout -->
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     ORDER DETAIL MODAL
+═══════════════════════════════════════════════════════════════ -->
+<div
+  id="order-modal"
+  class="admin-modal-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="order-modal-title"
+>
+  <div class="admin-modal-panel">
+
+    <!-- Header -->
+    <div class="admin-modal-hdr">
+      <h3 id="order-modal-title">Détail de la commande</h3>
+      <button
+        class="admin-modal-close"
+        onclick="closeOrderModal()"
+        aria-label="Fermer la fenêtre"
+      >✕</button>
+    </div>
+
+    <!-- Body -->
+    <div class="admin-modal-body">
+
+      <!-- Order ID -->
+      <div class="order-detail-row">
+        <span class="order-detail-label">Référence</span>
+        <code class="order-detail-val order-id" id="modal-order-id">—</code>
+      </div>
+
+      <!-- Status Badge -->
+      <div class="order-detail-row">
+        <span class="order-detail-label">Statut actuel</span>
+        <span class="status-badge status-new" id="modal-current-status">—</span>
+      </div>
+
+      <!-- Client Info -->
+      <div class="order-detail-section">
+        <h4 class="order-detail-section-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
+          </svg>
+          Informations client
+        </h4>
+        <div class="order-detail-grid">
+          <div class="order-detail-row">
+            <span class="order-detail-label">Nom complet</span>
+            <span class="order-detail-val" id="modal-order-client">—</span>
+          </div>
+          <div class="order-detail-row">
+            <span class="order-detail-label">Téléphone</span>
+            <span class="order-detail-val">
+              <a id="modal-order-tel" href="#" style="color:var(--accent)">—</a>
+            </span>
+          </div>
+          <div class="order-detail-row">
+            <span class="order-detail-label">Adresse</span>
+            <span class="order-detail-val" id="modal-order-adresse">—</span>
+          </div>
+          <div class="order-detail-row" id="modal-notes-row" hidden>
+            <span class="order-detail-label">Notes</span>
+            <span class="order-detail-val" id="modal-order-notes">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Info -->
+      <div class="order-detail-section">
+        <h4 class="order-detail-section-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20 4H4v2l8 5 8-5V4zm0 4.5l-8 5-8-5V20h16V8.5z"/>
+          </svg>
+          Informations commande
+        </h4>
+        <div class="order-detail-grid">
+          <div class="order-detail-row">
+            <span class="order-detail-label">Date</span>
+            <span class="order-detail-val" id="modal-order-date">—</span>
+          </div>
+          <div class="order-detail-row">
+            <span class="order-detail-label">Paiement</span>
+            <span class="order-detail-val" id="modal-order-payment">—</span>
+          </div>
+          <div class="order-detail-row">
+            <span class="order-detail-label">Total</span>
+            <span class="order-detail-val fw-bold" id="modal-order-total" style="color:var(--accent);font-size:1.1rem">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Articles Table -->
+      <div class="order-detail-section">
+        <h4 class="order-detail-section-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96C5 16.1 6.1 17 7 17h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63H19c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0023.5 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+          </svg>
+          Articles commandés
+        </h4>
+        <div class="table-wrap">
+          <table class="admin-table items-table" aria-label="Articles de la commande">
+            <thead>
+              <tr>
+                <th scope="col">Article</th>
+                <th scope="col" style="text-align:center">Qté</th>
+                <th scope="col" style="text-align:right">Prix/u</th>
+                <th scope="col" style="text-align:right">Sous-total</th>
+              </tr>
+            </thead>
+            <tbody id="modal-order-items">
+              <tr>
+                <td colspan="4" style="text-align:center;color:var(--text-2);padding:1rem">—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Status Update -->
+      <div class="order-detail-section">
+        <h4 class="order-detail-section-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+          Mettre à jour le statut
+        </h4>
+        <div class="status-update-row">
+          <label for="modal-order-status" class="visually-hidden">Nouveau statut</label>
+          <select
+            id="modal-order-status"
+            class="form-control status-select"
+            aria-label="Choisir le nouveau statut de la commande"
+          >
+            <option value="nouvelle">🆕 Nouvelle</option>
+            <option value="confirmee">✅ Confirmée</option>
+            <option value="en_livraison">🚚 En livraison</option>
+            <option value="livree">📦 Livrée</option>
+            <option value="annulee">❌ Annulée</option>
+          </select>
+          <button
+            class="btn btn-primary"
+            onclick="saveOrderStatus()"
+            aria-label="Enregistrer le nouveau statut"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+            Enregistrer
+          </button>
+        </div>
+        <p class="status-update-note">
+          ⚠️ Cette action est immédiatement enregistrée dans la base de données.
+        </p>
+      </div>
+
+      <!-- WhatsApp Button -->
+      <div style="margin-top:1rem">
+        <a
+          id="modal-wa-link"
+          href="https://wa.me/221781332323"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-whatsapp"
+          style="display:inline-flex;align-items:center;gap:.5rem;width:100%;justify-content:center"
+          aria-label="Contacter le client sur WhatsApp"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Contacter le client
+        </a>
+      </div>
+
+    </div>
+    <!-- /admin-modal-body -->
+
+  </div>
+  <!-- /admin-modal-panel -->
+</div>
+
+
+<!-- Admin Toast -->
+<div id="admin-toast" class="admin-toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
+<!-- Update telephone link dynamically -->
+<script>
+  // Patch renderOrderModalContent to also update the WA link and tel href
+  const _origRender = window.renderOrderModalContent;
+  document.addEventListener('DOMContentLoaded', () => {
+    const origFn = window.renderOrderModalContent;
+    if (typeof origFn === 'function') {
+      window.renderOrderModalContent = function(o) {
+        origFn(o);
+        // Update tel href
+        const telLink = document.getElementById('modal-order-tel');
+        if (telLink && o.telephone) {
+          telLink.href = 'tel:' + o.telephone.replace(/\s/g, '');
+          telLink.textContent = o.telephone;
+        }
+        // Update WhatsApp link
+        const waLink = document.getElementById('modal-wa-link');
+        if (waLink && o.telephone) {
+          const phone = o.telephone.replace(/[\s\-+]/g, '');
+          const msg   = encodeURIComponent(
+            'Bonjour ' + o.prenom + ', nous vous contactons au sujet de votre commande FA2M (Réf: ' + o.id + ').'
+          );
+          waLink.href = 'https://wa.me/' + phone + '?text=' + msg;
+        }
+      };
+    }
+  });
+</script>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>

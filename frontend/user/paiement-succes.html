@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FA2M — Paiement Réussi !</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#060d18">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .payment-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      background: var(--bg-0);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .payment-page::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% 0%, rgba(0,230,118,.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 80%, rgba(0,255,169,.05) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .payment-card {
+      position: relative;
+      z-index: 1;
+      background: var(--bg-card, rgba(13,24,41,.95));
+      border: 1px solid rgba(0,230,118,.2);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 40px 80px rgba(0,0,0,.5);
+      animation: slideUp .6s cubic-bezier(.2,.9,.24,1) both;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(0,230,118,.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      animation: popIn .5s .3s cubic-bezier(.2,.9,.24,1) both;
+      border: 2px solid rgba(0,230,118,.35);
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(.5); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .success-icon svg {
+      animation: drawCheck .4s .7s ease both;
+    }
+
+    @keyframes drawCheck {
+      from { opacity: 0; transform: scale(.5) rotate(-45deg); }
+      to   { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+
+    .payment-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .75rem;
+      animation: fadeIn .5s .4s ease both;
+    }
+
+    .payment-subtitle {
+      color: var(--text-2, #b0c4d0);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      animation: fadeIn .5s .5s ease both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .order-ref-box {
+      background: rgba(0,230,118,.06);
+      border: 1px dashed rgba(0,230,118,.3);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      animation: fadeIn .5s .6s ease both;
+    }
+
+    .order-ref-label {
+      font-size: .8rem;
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: .25rem;
+    }
+
+    .order-ref-value {
+      font-family: 'Courier New', monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent, #00e676);
+      letter-spacing: .05em;
+    }
+
+    .steps-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem;
+      text-align: left;
+      animation: fadeIn .5s .65s ease both;
+    }
+
+    .steps-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      padding: .6rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      color: var(--text-2);
+      font-size: .9rem;
+      line-height: 1.5;
+    }
+
+    .steps-list li:last-child {
+      border-bottom: none;
+    }
+
+    .steps-list .step-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: .05rem;
+    }
+
+    .payment-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeIn .5s .75s ease both;
+    }
+
+    .payment-actions .btn {
+      min-width: 160px;
+    }
+
+    .confetti-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .wa-contact-strip {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,.07);
+      animation: fadeIn .5s .8s ease both;
+    }
+
+    .wa-contact-strip p {
+      color: var(--text-2);
+      font-size: .85rem;
+      margin-bottom: .75rem;
+    }
+
+    .wa-contact-strip a {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      color: #25d366;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: .9rem;
+      transition: opacity .2s;
+    }
+
+    .wa-contact-strip a:hover {
+      opacity: .8;
+    }
+
+    @media (max-width: 480px) {
+      .payment-card {
+        padding: 2rem 1.25rem;
+        border-radius: 16px;
+      }
+
+      .payment-title {
+        font-size: 1.6rem;
+      }
+
+      .payment-actions {
+        flex-direction: column;
+      }
+
+      .payment-actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body data-page="success">
+
+<!-- Confetti particles container -->
+<div class="confetti-container" id="success-particles" aria-hidden="true"></div>
+
+<!-- Header minimal -->
+<header class="site-header" role="banner">
+  <div class="header-inner">
+    <a class="logo" href="index.html" aria-label="FA2M — Accueil">
+      FA<span>2</span>M
+      <div class="logo-dot" aria-hidden="true"></div>
+    </a>
+    <nav class="nav-desktop" aria-label="Navigation">
+      <a href="index.html">Accueil</a>
+      <a href="produits.html">Produits</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a href="produits.html" class="btn btn-primary">Voir la boutique</a>
+      <button
+        id="cart-btn-header"
+        class="cart-btn-header"
+        onclick="cartOpen()"
+        aria-label="Ouvrir le panier"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96C5 16.1 6.1 17 7 17h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63H19c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0023.5 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+        </svg>
+        <span class="cart-badge" aria-live="polite" style="display:none">0</span>
+      </button>
+      <button class="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile nav -->
+<nav class="nav-mobile" aria-label="Navigation mobile">
+  <a href="index.html">🏠 Accueil</a>
+  <a href="produits.html">🛍️ Produits</a>
+  <a href="apropos.html">ℹ️ À propos</a>
+  <a href="contact.html">📩 Contact</a>
+</nav>
+
+<!-- Main Content -->
+<main class="payment-page" role="main">
+
+  <div class="payment-card">
+
+    <!-- Success Icon -->
+    <div class="success-icon" id="success-check" aria-hidden="true">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M5 13l4 4L19 7"
+          stroke="#00e676"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+
+    <h1 class="payment-title">Paiement Réussi !</h1>
+
+    <p class="payment-subtitle">
+      Votre commande a bien été enregistrée et votre paiement confirmé.
+      Nous vous contacterons très prochainement pour la livraison.
+    </p>
+
+    <!-- Order Reference -->
+    <div class="order-ref-box" role="region" aria-label="Référence de commande">
+      <div class="order-ref-label">Référence de commande</div>
+      <div class="order-ref-value" id="order-ref">—</div>
+    </div>
+
+    <!-- Next Steps -->
+    <ul class="steps-list" aria-label="Prochaines étapes">
+      <li>
+        <span class="step-icon" aria-hidden="true">✅</span>
+        <span><strong>Paiement confirmé</strong> — Votre transaction a été validée avec succès.</span>
+      </li>
+      <li>
+        <span class="step-icon" aria-hidden="true">📱</span>
+        <span><strong>Confirmation WhatsApp</strong> — Vous recevrez un message de confirmation sous peu.</span>
+      </li>
+      <li>
+        <span class="step-icon" aria-hidden="true">🚚</span>
+        <span><strong>Préparation & Livraison</strong> — Votre commande sera expédiée dans les plus brefs délais.</span>
+      </li>
+      <li>
+        <span class="step-icon" aria-hidden="true">📦</span>
+        <span><strong>Réception</strong> — Livraison à Dakar sous 24–48h, reste du Sénégal sous 3–5 jours.</span>
+      </li>
+    </ul>
+
+    <!-- Action Buttons -->
+    <div class="payment-actions">
+      <a href="produits.html" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0">
+          <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96C5 16.1 6.1 17 7 17h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63H19c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0023.5 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+        </svg>
+        Continuer mes achats
+      </a>
+      <a href="index.html" class="btn btn-ghost">
+        Retour à l'accueil
+      </a>
+    </div>
+
+    <!-- WhatsApp Contact -->
+    <div class="wa-contact-strip">
+      <p>Une question sur votre commande ?</p>
+      <a
+        href="https://wa.me/221781332323?text=Bonjour%20FA2M%2C%20je%20souhaite%20avoir%20des%20informations%20sur%20ma%20commande."
+        target="_blank"
+        rel="noopener"
+        aria-label="Contacter FA2M sur WhatsApp"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Nous contacter sur WhatsApp
+      </a>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- Footer minimal -->
+<footer style="text-align:center;padding:1.5rem;color:var(--muted);font-size:.8rem;background:var(--bg-0)">
+  &copy; <span id="footer-year">2025</span> FA2M — Dakar, Sénégal
+</footer>
+
+<!-- WhatsApp Float -->
+<a
+  href="https://wa.me/221781332323"
+  class="whatsapp-float"
+  target="_blank"
+  rel="noopener"
+  aria-label="Contacter FA2M sur WhatsApp"
+>
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  <span>Aide</span>
+</a>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+</script>
+<script src="assets/js/config.js"  defer></script>
+<script src="assets/js/api.js"     defer></script>
+<script src="assets/js/cart.js"    defer></script>
+<script src="assets/js/ui.js"      defer></script>
+<script src="assets/js/main.js"    defer></script>
+
+</body>
+</html>

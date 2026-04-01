@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FA2M Admin — Produits</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#060d18">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+
+<body data-page="products">
+
+<div class="admin-layout">
+
+  <!-- ══════════════════════════════════════════════════════════
+       SIDEBAR
+  ═══════════════════════════════════════════════════════════ -->
+  <aside class="admin-sidebar" id="admin-sidebar" role="navigation" aria-label="Navigation admin">
+
+    <div class="sidebar-logo" aria-label="FA2M Administration">
+      <span class="sidebar-logo-text">FA<span>2</span>M</span>
+      <div class="sidebar-logo-dot" aria-hidden="true"></div>
+    </div>
+
+    <div class="sidebar-section">
+      <p class="sidebar-section-title">Menu principal</p>
+      <nav class="sidebar-nav" aria-label="Navigation principale">
+        <a href="index.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+          </svg>
+          Tableau de bord
+        </a>
+        <a href="commandes.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/>
+          </svg>
+          Commandes
+        </a>
+        <a href="produits.html" class="active" aria-current="page">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20 4H4v2l8 5 8-5V4zm0 4.5l-8 5-8-5V20h16V8.5z"/>
+          </svg>
+          Produits
+        </a>
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
+          </svg>
+        </div>
+        <span class="admin-username">admin</span>
+      </div>
+      <a
+        href="#"
+        class="sidebar-logout"
+        data-action="logout"
+        aria-label="Se déconnecter"
+        title="Se déconnecter"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+        </svg>
+        Déconnexion
+      </a>
+    </div>
+
+  </aside>
+
+  <!-- ══════════════════════════════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="admin-main">
+
+    <!-- Top Bar -->
+    <header class="admin-topbar" role="banner">
+      <div class="topbar-left">
+        <button
+          class="sidebar-toggle"
+          onclick="toggleSidebar()"
+          aria-label="Ouvrir/fermer le menu"
+          aria-expanded="false"
+          aria-controls="admin-sidebar"
+        >
+          <span></span><span></span><span></span>
+        </button>
+        <h1 class="topbar-title">Gestion des produits</h1>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-user">
+          <span class="admin-username">admin</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="admin-content">
+
+      <!-- ── Toolbar ── -->
+      <div class="admin-toolbar">
+
+        <!-- Search -->
+        <div class="admin-search-wrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+          <input
+            id="products-search"
+            type="search"
+            class="admin-search-input"
+            placeholder="Rechercher par nom ou catégorie…"
+            autocomplete="off"
+            aria-label="Rechercher un produit"
+          >
+        </div>
+
+        <!-- Count & Actions -->
+        <div style="display:flex;gap:.5rem;align-items:center">
+          <span class="orders-total-badge" id="products-count" aria-live="polite">0 produit(s)</span>
+          <button
+            id="btn-add-product"
+            class="btn btn-primary"
+            aria-label="Ajouter un nouveau produit"
+            title="Ajouter un nouveau produit"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+            Ajouter
+          </button>
+          <button
+            id="btn-reset-products"
+            class="btn"
+            aria-label="Réinitialiser les produits par défaut"
+            title="Réinitialiser les produits par défaut"
+          >
+            ↻ Réinitialiser
+          </button>
+        </div>
+
+      </div>
+
+      <!-- ── Products Table ── -->
+      <div class="admin-card" style="padding:0">
+        <div class="table-wrap">
+          <table class="admin-table" aria-label="Liste des produits">
+            <thead>
+              <tr>
+                <th scope="col" style="width:60px">Image</th>
+                <th scope="col">Produit</th>
+                <th scope="col" style="width:100px">Catégorie</th>
+                <th scope="col" style="width:100px">Prix</th>
+                <th scope="col" style="width:60px">Stock</th>
+                <th scope="col" style="width:80px">Badge</th>
+                <th scope="col" style="width:120px">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="products-tbody">
+              <tr>
+                <td colspan="7" style="text-align:center;padding:3rem;color:var(--text-2)">
+                  Chargement des produits…
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+    <!-- /admin-content -->
+
+  </div>
+  <!-- /admin-main -->
+
+</div>
+<!-- /admin-layout -->
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     PRODUCT FORM MODAL
+═══════════════════════════════════════════════════════════════ -->
+<div
+  id="product-modal"
+  class="admin-modal-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="product-form-title"
+>
+  <div class="admin-modal-panel" style="max-width:600px;max-height:90vh;overflow-y:auto">
+
+    <!-- Header -->
+    <div class="admin-modal-hdr">
+      <h3 id="product-form-title">Nouveau produit</h3>
+      <button
+        class="admin-modal-close"
+        onclick="closeProductModal()"
+        aria-label="Fermer la fenêtre"
+      >✕</button>
+    </div>
+
+    <!-- Body -->
+    <div class="admin-modal-body">
+      <form id="product-form" onsubmit="saveProductForm(event)">
+        <input type="hidden" id="product-form-id">
+
+        <!-- Name & Category Row -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+          <div>
+            <label for="pf-name" class="form-label">Nom <span style="color:var(--danger)">*</span></label>
+            <input id="pf-name" type="text" class="form-control" placeholder="ex: Sac à bandoulière cuir" required>
+          </div>
+          <div>
+            <label for="pf-category" class="form-label">Catégorie <span style="color:var(--danger)">*</span></label>
+            <input id="pf-category" type="text" class="form-control" placeholder="ex: Accessoires" required>
+          </div>
+        </div>
+
+        <!-- Price Row -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+          <div>
+            <label for="pf-price" class="form-label">Prix CFA <span style="color:var(--danger)">*</span></label>
+            <input id="pf-price" type="number" class="form-control" placeholder="45000" min="0" required>
+          </div>
+          <div>
+            <label for="pf-old-price" class="form-label">Prix barré (optionnel)</label>
+            <input id="pf-old-price" type="number" class="form-control" placeholder="65000" min="0">
+          </div>
+        </div>
+
+        <!-- Stock & Rating -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+          <div>
+            <label for="pf-stock" class="form-label">Stock <span style="color:var(--danger)">*</span></label>
+            <input id="pf-stock" type="number" class="form-control" placeholder="10" min="0" required>
+          </div>
+          <div>
+            <label for="pf-rating" class="form-label">Note (0-5)</label>
+            <input id="pf-rating" type="number" class="form-control" placeholder="4.5" min="0" max="5" step="0.5">
+          </div>
+        </div>
+
+        <!-- Reviews & Badge -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+          <div>
+            <label for="pf-reviews" class="form-label">Nombre d'avis</label>
+            <input id="pf-reviews" type="number" class="form-control" placeholder="48" min="0">
+          </div>
+          <div>
+            <label for="pf-badge" class="form-label">Badge (ex: Nouveau)</label>
+            <input id="pf-badge" type="text" class="form-control" placeholder="Soldes" maxlength="20">
+          </div>
+        </div>
+
+        <!-- Short Description -->
+        <div style="margin-bottom:1rem">
+          <label for="pf-short-desc" class="form-label">Description courte</label>
+          <input id="pf-short-desc" type="text" class="form-control" placeholder="Description affichée dans la liste" maxlength="150">
+        </div>
+
+        <!-- Long Description -->
+        <div style="margin-bottom:1rem">
+          <label for="pf-long-desc" class="form-label">Description détaillée</label>
+          <textarea id="pf-long-desc" class="form-control" placeholder="Description complète du produit" rows="4" style="resize:vertical"></textarea>
+        </div>
+
+        <!-- Main Image (TAB INTERFACE) -->
+        <div style="margin-bottom:1rem">
+          <label class="form-label">Image principale</label>
+          
+          <!-- Image Tabs -->
+          <div style="display:flex;gap:0.5rem;margin-bottom:0.75rem;border-bottom:1px solid var(--border);padding-bottom:0">
+            <button
+              type="button"
+              class="image-tab-btn active"
+              data-tab="url"
+              onclick="switchImageTab('url')"
+              style="flex:1;padding:0.75rem;border:none;background:none;color:var(--text);cursor:pointer;border-bottom:2px solid var(--accent);font-weight:500"
+              aria-label="Ajouter par URL"
+            >
+              🔗 URL
+            </button>
+            <button
+              type="button"
+              class="image-tab-btn"
+              data-tab="upload"
+              onclick="switchImageTab('upload')"
+              style="flex:1;padding:0.75rem;border:none;background:none;color:var(--text-2);cursor:pointer;border-bottom:2px solid transparent;font-weight:500;transition:all .2s"
+              aria-label="Uploader depuis ordinateur"
+            >
+              📤 Upload
+            </button>
+          </div>
+
+          <!-- URL Tab -->
+          <div id="image-tab-url" class="image-tab-content" style="display:block">
+            <input
+              id="pf-image"
+              type="url"
+              class="form-control"
+              placeholder="https://exemple.com/image.jpg"
+              onchange="previewMainImage(this)"
+              oninput="previewMainImage(this)"
+            >
+          </div>
+
+          <!-- Upload Tab -->
+          <div id="image-tab-upload" class="image-tab-content" style="display:none">
+            <div style="position:relative;border:2px dashed var(--border);border-radius:8px;padding:2rem;text-align:center;background:rgba(212,175,55,.05);cursor:pointer;transition:all .2s" ondrop="handleImageDrop(event)" ondragover="event.preventDefault();event.currentTarget.style.borderColor='var(--accent)'" ondragleave="event.currentTarget.style.borderColor='var(--border)'">
+              <input
+                id="pf-image-file"
+                type="file"
+                accept="image/*"
+                onchange="handleImageUpload(this.files[0])"
+                style="position:absolute;opacity:0;width:100%;height:100%;cursor:pointer"
+              >
+              <div style="pointer-events:none">
+                <div style="font-size:2rem;margin-bottom:0.5rem">📸</div>
+                <div style="font-weight:600">Cliquez ou glissez une image</div>
+                <div style="color:var(--text-2);font-size:0.9rem;margin-top:0.5rem">PNG, JPG, WebP jusqu'à 5MB</div>
+              </div>
+              <div id="upload-progress" style="margin-top:1rem;display:none">
+                <div style="font-size:0.9rem;margin-bottom:0.5rem" id="upload-status">Envoi en cours...</div>
+                <div style="width:100%;height:4px;background:var(--border);border-radius:2px;overflow:hidden">
+                  <div id="upload-bar" style="height:100%;background:var(--accent);width:0%;transition:width .3s"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Image Preview -->
+          <div id="image-preview" style="margin-top:1rem;display:none">
+            <div style="font-size:0.9rem;color:var(--text-2);margin-bottom:0.5rem">Aperçu :</div>
+            <img id="preview-img" src="" alt="Aperçu" style="max-width:100%;max-height:200px;border-radius:8px;object-fit:cover">
+          </div>
+        </div>
+
+        <!-- Other Images (TAB INTERFACE) -->
+        <div style="margin-bottom:1rem">
+          <label class="form-label">Autres images</label>
+          
+          <!-- Images Tabs -->
+          <div style="display:flex;gap:0.5rem;margin-bottom:0.75rem;border-bottom:1px solid var(--border);padding-bottom:0">
+            <button
+              type="button"
+              class="images-tab-btn active"
+              data-tab="url"
+              onclick="switchImagesTab('url')"
+              style="flex:1;padding:0.75rem;border:none;background:none;color:var(--text);cursor:pointer;border-bottom:2px solid var(--accent);font-weight:500"
+              aria-label="Ajouter par URL"
+            >
+              🔗 Par URL
+            </button>
+            <button
+              type="button"
+              class="images-tab-btn"
+              data-tab="upload"
+              onclick="switchImagesTab('upload')"
+              style="flex:1;padding:0.75rem;border:none;background:none;color:var(--text-2);cursor:pointer;border-bottom:2px solid transparent;font-weight:500;transition:all .2s"
+              aria-label="Uploader des images"
+            >
+              📤 Upload multiple
+            </button>
+          </div>
+
+          <!-- URL Tab -->
+          <div id="images-tab-url" class="images-tab-content" style="display:block">
+            <textarea 
+              id="pf-images" 
+              class="form-control" 
+              placeholder="https://...\nhttps://..." 
+              rows="4" 
+              style="resize:vertical;font-family:monospace;font-size:0.9rem"
+            ></textarea>
+            <div style="color:var(--text-2);font-size:0.85rem;margin-top:0.5rem">Une URL par ligne</div>
+          </div>
+
+          <!-- Upload Tab -->
+          <div id="images-tab-upload" class="images-tab-content" style="display:none">
+            <div style="position:relative;border:2px dashed var(--border);border-radius:8px;padding:2rem;text-align:center;background:rgba(212,175,55,.05);cursor:pointer;transition:all .2s" ondrop="handleImagesDropZone(event)" ondragover="event.preventDefault();event.currentTarget.style.borderColor='var(--accent)'" ondragleave="event.currentTarget.style.borderColor='var(--border)'">
+              <input
+                id="pf-images-files"
+                type="file"
+                accept="image/*"
+                multiple
+                onchange="handleImagesMultipleUpload(this.files)"
+                style="position:absolute;opacity:0;width:100%;height:100%;cursor:pointer"
+              >
+              <div style="pointer-events:none">
+                <div style="font-size:2rem;margin-bottom:0.5rem">🖼️</div>
+                <div style="font-weight:600">Cliquez ou glissez plusieurs images</div>
+                <div style="color:var(--text-2);font-size:0.9rem;margin-top:0.5rem">PNG, JPG, WebP jusqu'à 5MB par image</div>
+              </div>
+              <div id="multi-upload-progress" style="margin-top:1rem;display:none">
+                <div style="font-size:0.9rem;margin-bottom:0.5rem" id="multi-upload-status">Envoi en cours...</div>
+                <div style="width:100%;height:4px;background:var(--border);border-radius:2px;overflow:hidden">
+                  <div id="multi-upload-bar" style="height:100%;background:var(--accent);width:0%;transition:width .3s"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Images Preview Grid -->
+          <div id="images-preview-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:1rem;margin-top:1rem;display:none">
+          </div>
+        </div>
+
+        <!-- Specifications -->
+        <div style="margin-bottom:1rem">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
+            <label class="form-label" style="margin:0">Spécifications (optionnel)</label>
+            <button type="button" class="btn btn-sm" onclick="addSpec()" aria-label="Ajouter une spécification">
+              + Ajouter
+            </button>
+          </div>
+          <div id="specs-editor" style="display:grid;gap:0.5rem"></div>
+        </div>
+
+        <!-- Submit -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border)">
+          <button type="button" class="btn" onclick="closeProductModal()">
+            Annuler
+          </button>
+          <button type="submit" class="btn btn-primary">
+            Enregistrer
+          </button>
+        </div>
+
+      </form>
+    </div>
+    <!-- /admin-modal-body -->
+
+  </div>
+  <!-- /admin-modal-panel -->
+</div>
+
+
+<!-- Toast Notification -->
+<div id="admin-toast" class="admin-toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+
+<!-- Scripts -->
+<script src="assets/js/config.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/app.js"></script>
+
+<script>
+  // Initialize products page
+  if (document.body.dataset.page === 'products') {
+    initProductsPage();
+  }
+</script>
+
+</body>
+</html>

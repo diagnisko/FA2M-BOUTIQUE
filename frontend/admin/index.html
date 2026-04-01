@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FA2M Admin — Tableau de bord</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#060d18">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+
+<body data-page="dashboard">
+
+<div class="admin-layout">
+
+  <!-- ══════════════════════════════════════════════════════════
+       SIDEBAR
+  ═══════════════════════════════════════════════════════════ -->
+  <aside class="admin-sidebar" id="admin-sidebar" role="navigation" aria-label="Navigation admin">
+
+    <div class="sidebar-logo" aria-label="FA2M Administration">
+      <span class="sidebar-logo-text">FA<span>2</span>M</span>
+      <div class="sidebar-logo-dot" aria-hidden="true"></div>
+    </div>
+
+    <div class="sidebar-section">
+      <p class="sidebar-section-title">Menu principal</p>
+      <nav class="sidebar-nav" aria-label="Navigation principale">
+        <a href="index.html" class="active" aria-current="page">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+          </svg>
+          Tableau de bord
+        </a>
+        <a href="commandes.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/>
+          </svg>
+          Commandes
+        </a>
+        <a href="produits.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20 4H4v2l8 5 8-5V4zm0 4.5l-8 5-8-5V20h16V8.5z"/>
+          </svg>
+          Produits
+        </a>
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5z"/>
+          </svg>
+        </div>
+        <span class="admin-username">admin</span>
+      </div>
+      <a
+        href="#"
+        class="sidebar-logout"
+        data-action="logout"
+        aria-label="Se déconnecter"
+        title="Se déconnecter"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+        </svg>
+        Déconnexion
+      </a>
+    </div>
+
+  </aside>
+
+  <!-- ══════════════════════════════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="admin-main">
+
+    <!-- Top Bar -->
+    <header class="admin-topbar" role="banner">
+      <div class="topbar-left">
+        <button
+          class="sidebar-toggle"
+          onclick="toggleSidebar()"
+          aria-label="Ouvrir/fermer le menu"
+          aria-expanded="false"
+          aria-controls="admin-sidebar"
+        >
+          <span></span><span></span><span></span>
+        </button>
+        <h1 class="topbar-title">Tableau de bord</h1>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-date" id="topbar-date"></span>
+        <div class="topbar-user">
+          <span class="admin-username">admin</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="admin-content">
+
+      <!-- ── Stats Cards ── -->
+      <div class="admin-stats" role="list" aria-label="Statistiques">
+
+        <div class="admin-stat" role="listitem">
+          <div class="admin-stat-icon" style="background:rgba(0,230,118,.12);color:var(--accent)" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/>
+            </svg>
+          </div>
+          <div class="admin-stat-body">
+            <div class="admin-stat-val" id="stat-total">—</div>
+            <div class="admin-stat-label">Commandes total</div>
+          </div>
+        </div>
+
+        <div class="admin-stat" role="listitem">
+          <div class="admin-stat-icon" style="background:rgba(0,180,216,.12);color:#00b4d8" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          </div>
+          <div class="admin-stat-body">
+            <div class="admin-stat-val" id="stat-new" style="color:#00b4d8">—</div>
+            <div class="admin-stat-label">Nouvelles commandes</div>
+          </div>
+        </div>
+
+        <div class="admin-stat" role="listitem">
+          <div class="admin-stat-icon" style="background:rgba(255,204,0,.1);color:#ffcc00" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+            </svg>
+          </div>
+          <div class="admin-stat-body">
+            <div class="admin-stat-val" id="stat-revenue" style="color:#ffcc00">—</div>
+            <div class="admin-stat-label">Chiffre d'affaires (livrées)</div>
+          </div>
+        </div>
+
+        <div class="admin-stat" role="listitem">
+          <div class="admin-stat-icon" style="background:rgba(255,77,106,.1);color:#ff4d6a" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+            </svg>
+          </div>
+          <div class="admin-stat-body">
+            <div class="admin-stat-val" id="stat-pending" style="color:#ff4d6a">—</div>
+            <div class="admin-stat-label">En attente</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── Revenue Chart ── -->
+      <div class="admin-card">
+        <div class="admin-card-hdr">
+          <h2>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99l1.5 1.5z"/>
+            </svg>
+            Revenus — 6 derniers mois
+          </h2>
+          <span class="card-badge">Commandes livrées</span>
+        </div>
+        <div id="revenue-chart" class="revenue-chart" aria-label="Graphique des revenus" role="img">
+          <div style="text-align:center;padding:2rem;color:var(--text-2)">Chargement…</div>
+        </div>
+      </div>
+
+      <!-- ── Recent Orders ── -->
+      <div class="admin-card">
+        <div class="admin-card-hdr">
+          <h2>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+            </svg>
+            Commandes récentes
+          </h2>
+          <a href="commandes.html" class="btn btn-sm btn-ghost">Voir toutes →</a>
+        </div>
+        <div class="table-wrap">
+          <table class="admin-table" aria-label="Commandes récentes">
+            <thead>
+              <tr>
+                <th>Référence</th>
+                <th>Client</th>
+                <th>Total</th>
+                <th>Statut</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="recent-orders-tbody">
+              <tr>
+                <td colspan="5" style="text-align:center;padding:2rem;color:var(--text-2)">
+                  Chargement…
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── Quick Actions ── -->
+      <div class="admin-card">
+        <div class="admin-card-hdr">
+          <h2>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+            Actions rapides
+          </h2>
+        </div>
+        <div class="quick-actions">
+          <a href="produits.html" class="quick-action-btn">
+            <span class="qa-icon" aria-hidden="true">📦</span>
+            <span>Gérer les produits</span>
+          </a>
+          <a href="commandes.html" class="quick-action-btn">
+            <span class="qa-icon" aria-hidden="true">📋</span>
+            <span>Voir les commandes</span>
+          </a>
+          <a href="commandes.html?status=nouvelle" class="quick-action-btn">
+            <span class="qa-icon" aria-hidden="true">🆕</span>
+            <span>Nouvelles commandes</span>
+          </a>
+          <a href="../user/index.html" target="_blank" rel="noopener" class="quick-action-btn">
+            <span class="qa-icon" aria-hidden="true">🌐</span>
+            <span>Voir la boutique</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <!-- /admin-content -->
+
+  </div>
+  <!-- /admin-main -->
+
+</div>
+<!-- /admin-layout -->
+
+<!-- Admin Toast -->
+<div id="admin-toast" class="admin-toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
+<script>
+  // Set current date in topbar
+  const dateEl = document.getElementById('topbar-date');
+  if (dateEl) {
+    dateEl.textContent = new Date().toLocaleDateString('fr-FR', {
+      weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+    });
+  }
+</script>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>
