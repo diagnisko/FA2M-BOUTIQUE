@@ -508,7 +508,7 @@ function injectCartDrawer() {
             <label class="payment-option">
               <input type="radio" name="payment" value="whatsapp" checked>
               <span class="payment-option-inner">
-                <span class="payment-option-icon">📱</span>
+                <img class="payment-icon" src="assets/img/whatsapp.png" alt="WhatsApp" loading="lazy">
                 <span class="payment-option-info">
                   <strong>WhatsApp</strong>
                   <span>Confirmez par message — toujours disponible</span>
@@ -519,7 +519,7 @@ function injectCartDrawer() {
             <label class="payment-option">
               <input type="radio" name="payment" value="wave">
               <span class="payment-option-inner wave">
-                <span class="payment-option-icon">🌊</span>
+                <img class="payment-icon" src="assets/img/wave.png" alt="Wave" loading="lazy">
                 <span class="payment-option-info">
                   <strong>Wave</strong>
                   <span>Paiement mobile instantané et sécurisé</span>
@@ -530,10 +530,21 @@ function injectCartDrawer() {
             <label class="payment-option">
               <input type="radio" name="payment" value="orange_money">
               <span class="payment-option-inner om">
-                <span class="payment-option-icon">🟠</span>
+                <img class="payment-icon" src="assets/img/orange.png" alt="Orange Money" loading="lazy">
                 <span class="payment-option-info">
                   <strong>Orange Money</strong>
                   <span>Paiement via Orange Money Sénégal</span>
+                </span>
+              </span>
+            </label>
+
+            <label class="payment-option">
+              <input type="radio" name="payment" value="espece">
+              <span class="payment-option-inner espece">
+                <img class="payment-icon" src="assets/img/espece.png" alt="Espèces" loading="lazy">
+                <span class="payment-option-info">
+                  <strong>À la livraison (Espèces)</strong>
+                  <span>Paiement en cash lors de la livraison</span>
                 </span>
               </span>
             </label>

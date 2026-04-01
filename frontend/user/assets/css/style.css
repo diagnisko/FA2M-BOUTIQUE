@@ -2818,10 +2818,33 @@ textarea {
     border-color: var(--border-md);
 }
 
-.payment-option-icon {
-    font-size: 1.5rem;
-    line-height: 1;
+.payment-icon {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 8px;
     flex-shrink: 0;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+    transition: transform 0.2s ease;
+}
+.payment-option:hover .payment-icon {
+    transform: scale(1.05);
+}
+.payment-option-inner::after {
+    content: "";
+    position: absolute;
+    right: 1.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--border-md);
+    transition: all 0.2s ease;
+    background: transparent;
+}
+.payment-option input:checked + .payment-option-inner .payment-icon {
+    filter: drop-shadow(0 0 0 3px var(--accent-dim)) drop-shadow(0 4px 12px rgba(212,175,55,0.4));
 }
 .payment-option-info {
     display: flex;
